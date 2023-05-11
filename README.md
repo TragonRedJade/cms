@@ -1,3 +1,12 @@
+# starting the project
+```
+cd cms/cms-client
+yarn dev
+
+cd cms/cms-api
+yarnd dev
+```
+
 # cms login
 ```
 admin@redjade.net
@@ -5,9 +14,9 @@ Lf91Hmu9b2E2
 ```
 
 # tutorial
-https://strapi.io/blog/how-to-create-a-blog-with-svelte-kit-strapi
-https://strapi.io/blog/categories/tutorials
-https://svelte.dev/tutorial/basics
+* https://strapi.io/blog/how-to-create-a-blog-with-svelte-kit-strapi
+* https://strapi.io/blog/categories/tutorials
+* https://svelte.dev/tutorial/basics
 
 # task
 [] Clone https://www.jjfriendsandneighbors.com
