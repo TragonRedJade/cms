@@ -1,59 +1,33 @@
-<script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+<script lang="ts" context="module">
+	import type { Load } from '@sveltejs/kit';
+	/** @type {import('./$types').PageData} */  
+
+	import { goto } from '$app/navigation';
+	import defaultOptions from '../lib/utils/defaultOptions';
+	export const load: Load = async ({ fetch }) => {	
+		console.log("Hi");	
+		const res = await fetch('http://127.0.0.1:1337/api/posts', defaultOptions);
+		const response = await res.json();
+
+		return { props: { posts: response.data } };
+	};
+
+</script>
+<script lang="ts">
+	export let posts: any;
 </script>
 
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
-
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
-</section>
-
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
-</style>
+<div class="my-4">
+	<h1 class="text-center text-3xl font-bold">My wonderful blog</h1>
+</div>
+<div class="container mx-auto mt-4">
+	{posts}
+	<!-- {#each posts as post}
+		<div
+			class="hover:bg-gray-200 cursor-pointer px-6 py-2 border-b border-gray-500"
+			on:click={() => goto('/blog/' + post.id)}
+		> 
+			<h4 class="font-bold">{post.attributes.title}</h4>
+		</div>
+	{/each} -->
+	</div>
