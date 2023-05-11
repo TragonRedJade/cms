@@ -1,10 +1,12 @@
 # starting the project
 ```
 cd cms/cms-client
+yarn install
 yarn dev
 
 cd cms/cms-api
-yarnd dev
+yarn install
+yarn dev
 ```
 
 # cms login
