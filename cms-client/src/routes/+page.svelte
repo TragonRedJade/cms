@@ -1,5 +1,5 @@
 <script>
-	// EXAMPLE grab records from the database
+	// EXAMPLE Client-Side Rendering: Grab records from the database after the page loads
 
 	// export async function loadPosts() {
 	// 	const res = await fetch('http://localhost:1337/api/posts');
