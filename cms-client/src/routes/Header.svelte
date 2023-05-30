@@ -1,123 +1,246 @@
 <script>
-	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
+import { page } from '$app/stores';
+import { onMount } from 'svelte';
+export let currentTopNav='';
+export let topNavHovering="";
+
+let topNav = [];
+let error = null
+onMount(async () => {
+    const parseJSON = (resp) => (resp.json ? resp.json() : resp);
+    const checkStatus = (resp) => {
+    if (resp.status >= 200 && resp.status < 300) {
+      return resp;
+    }
+    return parseJSON(resp).then((resp) => {
+      throw resp;
+    });
+  };
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+
+    try {
+        const res = await fetch("http://localhost:1337/api/Navigations", {
+          method: "GET",
+          headers: {
+             'Content-Type': 'application/json'
+          },
+        }).then(checkStatus)
+      .then(parseJSON);
+        topNav = res.data
+    } catch (e) {
+        error = e
+    }
+});
 </script>
 
+
+
+
+
+
+
+
 <header>
-	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
-		</a>
-	</div>
 
-	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
-		<ul>
+        
+    
+          
+
+
+<img src="http://localhost:1337/uploads/jandj_logo_a88a7a2763.jpg" width="163" height="62" id="gpLogo2" style="right: 7px; top: -152px">
+<div id="gpWrapper2">
+        <div id="gpHeader">
+<a href="#"><img src="http://localhost:1337/uploads/friends_and_neighbors_logo_09fa39b2cf.jpg" alt="" width="620" height="120" id="gpLogo1"></a>
+<nav>
+	      <div id="gpNavigation">
+		<div ng-include="'jj_nav_template'" class="ng-scope">
+            <div id="gpNaviUlWrap" class="ng-scope">
+		<ul  id="gpNaviUl">
+				{#each topNav as nav}
+				{#if $page.url.pathname==nav.attributes.link}
+                        <li aria-current={$page.url.pathname === '/' ? 'page' : undefined} data-ui-sref-active="gpActive" class="gpActive">
+
+					<a href='{nav.attributes.link}'>{nav.attributes.NavName}  </a>
+
+				
+			</li>	
+				{:else}
+				
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
-			</li>			
-		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
-	</nav>
+                  
+					<a href='{nav.attributes.link}'>{nav.attributes.NavName}</a>
 
-	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
-		</a>
-	</div>
+				
+			</li>	
+				
+	
+                      {/if}
+{/each}	
+		</ul>
+  	
+		</div>
+		</div>
+		</div>
+	
+	</nav>
+</div>
+
+	    
+</div>
+
+        
+	
+
+	
 </header>
 
 <style>
-	header {
-		display: flex;
-		justify-content: space-between;
-	}
+#gpLogo2 {
+    top: 0px;
+    right: 40px;
+    position: absolute;
+    z-index: 5;
+    box-shadow: #aaabae 0px 0px 5px;
+}
 
-	.corner {
-		width: 3em;
-		height: 3em;
-	}
+#gpWrapper1 {
+    
+    border: 0px solid red;
+    width: auto;
+    position: relative;
+    padding: 0;
+    z-index: 2;
+}
 
-	.corner a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-	}
 
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
-	}
+#gpWrapper {
+    width: 934px;
+    border: 0px solid #D6D6D6;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+#bodyWrapper {
+    line-height: 1;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    font-size: 14px;
 
-	nav {
-		display: flex;
-		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
-	}
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: fixed;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: #dae0e5;
+    padding-top: 150px;
+    padding-right: 40px;
+    padding-bottom: 0px;
+    padding-left: 33px;
+}
+#gpWrapper2 {
+    background: transparent url(/secure/images/jj/wrapper-right-bg.png) no-repeat right 70px;
+    border: 0px solid blue;
+    width: auto;
+    position: relative;
+    padding: 0;
+    z-index: 3;
+}
 
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
 
-	path {
-		fill: var(--background);
-	}
+#gpHeader {
+    height: 0;
+    background: none;
+    border: 0px solid black;
+    margin: 0 20px;
+    position: relative;
+    z-index: 4;
+}
 
-	ul {
-		position: relative;
-		padding: 0;
-		margin: 0;
-		height: 3em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		list-style: none;
-		background: var(--background);
-		background-size: contain;
-	}
+#gpLogo1 {
+    top: -121px;
+    left: -13px;
+    position: absolute;
+    z-index: 5;
+    box-shadow: #aaabae 0px 0px 5px;
+    background: white;
+}
+#gpNavigation {
+    margin: 0 16px;
+    background: none;
+    position: relative;
+    z-index: 4;
+    padding: 24px 0 0 0;
+    border-bottom: 0px dotted #999;
+}
 
-	li {
-		position: relative;
-		height: 100%;
-	}
+#gpNaviUl {
+    float: none;
+    border-top: 1px solid #d5dce0;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 24;
+}
+#gpNaviUlWrap {
+    background: none;
+    height: 46px;
+    position: relative;
+    z-index: 20;
+    padding: 0;
+    margin-left: -30px;
+}
 
-	li[aria-current='page']::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--color-theme-1);
-	}
+#gpNaviUl li a {
+    display: block;
+    font-size: 14px;
+    height: 20px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    font-weight: bold;
+    text-transform: none;
+    text-decoration: none;
+    background: #C8102E;
+    color: #F7F7F7;
+    padding: 10px 30px 27px 30px;
+    position: relative;
+    z-index: 23;
+    letter-spacing: 0;
+    margin: 0 auto;
+}
 
-	nav a {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		padding: 0 0.5rem;
-		color: var(--color-text);
-		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		text-decoration: none;
-		transition: color 0.2s linear;
-	}
+#gpNaviUl li {
+    float: left;
+    display: block;
+    padding: 0;
+    margin: 0 5px 0 0;
+    position: relative;
+    z-index: 22;
+    box-sizing: content-box;
+}
 
-	a:hover {
-		color: var(--color-theme-1);
-	}
+
+#gpNaviUl li.gpActive a {
+    text-decoration: underline;
+    margin: 0 auto -8px;
+    padding-bottom: 34px;
+    top: -7px;
+    line-height: 19px;
+}
+
+
+#gpNaviUl a:hover {
+position: relative;
+    top:1px;
+}
 </style>
+
+
+
+
+
+
+
+

@@ -5,7 +5,7 @@
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-mono: 'Fira Mono', monospace;
 	--color-bg-0: rgb(202, 216, 228);
-	--color-bg-1: hsl(209, 36%, 86%);
+	--color-bg-1: hsl(0, 0%, 100%);
 	--color-bg-2: hsl(224, 44%, 95%);
 	--color-theme-1: #ff3e00;
 	--color-theme-2: #4075a6;
@@ -16,92 +16,107 @@
 	color: var(--color-text);
 }
 
-body {
-	min-height: 100vh;
-	margin: 0;
-	background-attachment: fixed;
-	background-color: var(--color-bg-1);
-	background-size: 100vw 100vh;
-	background-image: radial-gradient(
-			50% 50% at 50% 50%,
-			rgba(255, 255, 255, 0.75) 0%,
-			rgba(255, 255, 255, 0) 100%
-		),
-		linear-gradient(180deg, var(--color-bg-0) 0%, var(--color-bg-1) 15%, var(--color-bg-2) 50%);
+#gpContent {
+    line-height: 20px;
+    margin: 0 325px 20px 0;
+    background: transparent;
+    border: none;
+    position: relative;
+    z-index: 5;
 }
 
-h1,
-h2,
-p {
-	font-weight: 400;
+#page{
+width: 912px; 
+background-color:white; 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+ 
+
+ 
+border: 1px solid LightGrey;
+		
 }
 
-p {
-	line-height: 1.5;
+#pageOutline{
+width: 930px; 
+background-color:white; 
+padding-bottom: 8px;
+padding-top:8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+ top:62px;
+  border: 1px solid #d2d3d6;
+		
 }
 
-a {
-	color: var(--color-theme-1);
-	text-decoration: none;
+
+
+#gpWrapper1 {
+    
+    border: 0px solid red;
+    width: auto;
+    position: relative;
+    padding: 0;
+    z-index: 2;
 }
 
-a:hover {
-	text-decoration: underline;
+
+#gpWrapper {
+    width: 934px;
+    border: 0px solid #D6D6D6;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+#bodyWrapper {
+    line-height: 1;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    font-size: 14px;
+
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: fixed;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: #dae0e5;
+    padding-top: 150px;
+    padding-right: 40px;
+    padding-bottom: 0px;
+    padding-left: 33px;
+}
+#gpWrapper2 {
+    background: transparent url(/secure/images/jj/wrapper-right-bg.png) no-repeat right 70px;
+    border: 0px solid blue;
+    width: auto;
+    position: relative;
+    padding: 0;
+    z-index: 3;
 }
 
-h1 {
-	font-size: 2rem;
-	text-align: center;
+
+#gpHeader {
+    height: 0;
+    background: none;
+    border: 0px solid black;
+    margin: 0 20px;
+    position: relative;
+    z-index: 4;
 }
 
-h2 {
-	font-size: 1rem;
+#gpFoot {
+    background: #FFF;
+    border-top: 1px solid #d2d3d6;
+    margin: 0 0px;
+    text-transform: none;
+    color: #b4bdc4;
+    position: relative;
+    padding: 15px;
 }
 
-pre {
-	font-size: 16px;
-	font-family: var(--font-mono);
-	background-color: rgba(255, 255, 255, 0.45);
-	border-radius: 3px;
-	box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
-	padding: 0.5em;
-	overflow-x: auto;
-	color: var(--color-text);
-}
-
-.text-column {
-	display: flex;
-	max-width: 48rem;
-	flex: 0.6;
-	flex-direction: column;
-	justify-content: center;
-	margin: 0 auto;
-}
-
-input,
-button {
-	font-size: inherit;
-	font-family: inherit;
-}
-
-button:focus:not(:focus-visible) {
-	outline: none;
-}
-
-@media (min-width: 720px) {
-	h1 {
-		font-size: 2.4rem;
-	}
-}
-
-.visually-hidden {
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: auto;
-	margin: 0;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
-	white-space: nowrap;
-}

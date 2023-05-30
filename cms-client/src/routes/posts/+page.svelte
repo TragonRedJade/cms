@@ -14,7 +14,8 @@
 			on:click={() => goto('/blog/' + post.id)}
 		>
 			<h4 class="font-bold">{post.attributes.Title}</h4>
-			<p class="mt-2 text-gray-800">{post.attributes.created_at}</p>
+			<p class="mt-2 text-gray-800">{post.attributes.Content}</p>
+			<p class="mt-2 text-gray-800">{post.attributes.author}</p>
 		</div>
 	{/each}
 </div>
