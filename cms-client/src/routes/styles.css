@@ -33,8 +33,6 @@ background-color:white;
   margin-right: auto;
   position: relative;
  
-
- 
 border: 1px solid LightGrey;
 		
 }
@@ -47,7 +45,7 @@ padding-top:8px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  position: relative;
+  position: absolute;
  top:62px;
   border: 1px solid #d2d3d6;
 		

@@ -155,7 +155,7 @@ onMount(async () => {
     height: 0;
     background: none;
     border: 0px solid black;
-    margin: 0 20px;
+    margin: 0 18px;
     position: relative;
     z-index: 4;
 }

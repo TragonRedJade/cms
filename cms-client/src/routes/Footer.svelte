@@ -5,7 +5,7 @@ export let footerNavLineCount=0;
 import { page } from '$app/stores';
 import { onMount } from 'svelte';
 
-
+let footerDescriptions=[];
 let footerNav = [];
 let error = null
 onMount(async () => {
@@ -34,9 +34,20 @@ onMount(async () => {
     } catch (e) {
         error = e
     }
+
+ try {
+        const res2 = await fetch("http://localhost:1337/api/footer-descriptions", {
+          method: "GET",
+          headers: {
+             'Content-Type': 'application/json'
+          },
+        }).then(checkStatus)
+      .then(parseJSON);
+        footerDescriptions = res2.data
+    } catch (e) {
+        error = e
+    }
 });
-
-
 
 
 
@@ -71,20 +82,12 @@ onMount(async () => {
 </div>
 <div class="hr"></div>
 <div id="gpFootSubSub">
-<script>
-let test = 0;
-</script>
-            <p>
-              © J&amp;JCI 2022. All rights reserved. The third party trademarks used herein are trademarks of their
-              respective owners.
-            </p>
+{#each footerDescriptions as Line}
+<p>
+{Line.attributes.Line}
+</p>
 <br>
-            <p>
-              This site is published by Johnson &amp; Johnson Consumer Inc. which is solely responsible for its content.
-            </p>
-<br>
-            <p>This site is intended for residents of the US only.</p>
-
+{/each}
           </div>
 <div id="gpFooter">
       <span id="gpBorderBL"></span>
