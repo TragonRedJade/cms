@@ -119,7 +119,9 @@ index--;
 
 <div id = "cellularContent">
 <div style="padding-left: 20px;"></div>
+{#each Cellulars as iteration, loop}
 {#each Cellulars as cell}
+{#if cell.id==loop+1}
 <div style = "width: 220px; padding-bottom: 15px;">
 <img src='{cell.attributes.Image}' width="210" height="130">
 <br>
@@ -138,6 +140,9 @@ index--;
 <a class="gpSubmit" href='{cell.attributes.ButtonLink}'>{cell.attributes.ButtonName}</a>
 {/if}
 </div>
+
+{/if}
+{/each}
 {/each}
 </div>
 

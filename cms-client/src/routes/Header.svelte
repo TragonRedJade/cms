@@ -44,8 +44,6 @@ onMount(async () => {
 
 <header>
 
-        
-    
           
 
 
@@ -58,26 +56,31 @@ onMount(async () => {
 		<div ng-include="'jj_nav_template'" class="ng-scope">
             <div id="gpNaviUlWrap" class="ng-scope">
 		<ul  id="gpNaviUl">
-				{#each topNav as nav}
-				{#if $page.url.pathname==nav.attributes.link}
-                        <li aria-current={$page.url.pathname === '/' ? 'page' : undefined} data-ui-sref-active="gpActive" class="gpActive">
+				 {#each topNav as iteration, loop}
+			         	{#each topNav as nav}
+						{#if nav.id==loop+6}
+							{#if $page.url.pathname==nav.attributes.link}
+                       						 <li aria-current={$page.url.pathname === '/' ? 'page' : undefined} data-ui-sref-active="gpActive" class="gpActive">
 
-					<a href='{nav.attributes.link}'>{nav.attributes.NavName}  </a>
+								  <a href='{nav.attributes.link}'>{nav.attributes.NavName}  </a>
 
 				
-			</li>	
-				{:else}
+								   </li>	
+								   {:else}
 				
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
+			                                           <li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
                   
-					<a href='{nav.attributes.link}'>{nav.attributes.NavName}</a>
+					                           <a href='{nav.attributes.link}'>{nav.attributes.NavName}</a>
 
 				
-			</li>	
+			                                           </li>	
 				
 	
                       {/if}
-{/each}	
+
+{/if}
+{/each}
+{/each}
 		</ul>
   	
 		</div>
