@@ -58,6 +58,8 @@ onMount(async () => {
 <div id="gpFootSub">
 <div id="gpCopyright"></div>
 <div id="gpSubNavigation">
+
+
 {#each footerNav as footer, footerNavLineCount}
 <ul id="gpSubNaviUl">
 {#if footerNavLineCount==1}
@@ -82,11 +84,19 @@ onMount(async () => {
 </div>
 <div class="hr"></div>
 <div id="gpFootSubSub">
+{#each footerDescriptions as iteration, loop}
 {#each footerDescriptions as Line}
-<p>
+{#if Line.id == loop+7}
+<div style = " 
+    font-size: 9px;
+    line-height: 12px;
+    font-family: Arial, sans-serif;
+    color: #666;">
 {Line.attributes.Line}
-</p>
+</div>
 <br>
+{/if}
+{/each}
 {/each}
           </div>
 <div id="gpFooter">
@@ -189,16 +199,7 @@ position: absolute;
     background-color: initial;
 }
 
-#gpFootSubSub p {
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-    font-size: 9px;
-    line-height: 12px;
-    font-family: Arial, sans-serif;
-    color: #666;
-}
+
 
 
 

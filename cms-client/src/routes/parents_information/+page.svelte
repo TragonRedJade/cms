@@ -3,6 +3,7 @@ import { page } from '$app/stores';
 import { onMount } from 'svelte';
 let parentInfo=[];
 let sortedParentInfo=[];
+let loginForm=[];
 let error=null;
 onMount(async () => {
     const parseJSON = (resp) => (resp.json ? resp.json() : resp);
@@ -30,17 +31,31 @@ onMount(async () => {
     } catch (e) {
         error = e
     }
+ try {
+        const res2 = await fetch("http://localhost:1337/api/login-forms", {
+          method: "GET",
+          headers: {
+             'Content-Type': 'application/json'
+          },
+        }).then(checkStatus)
+      .then(parseJSON);
+        loginForm = res2.data
+    } catch (e) {
+        error = e
+    }
 });
 
 
 </script>
 
 
+<link rel = "stylesheet" href = "http://localhost:1337/uploads/loginform_f74fe7510a.css">
+
+{#each loginForm as form}
+{@html form.attributes.html}
+{/each}
 
 
-
-
-<div id = "login-box">The Mohawks were based in the Mohawk valley and noted for their fur trading and their access to trade between the Iroquois and other nations.[16] The Mohawk became strong trading partners with the Dutch and English. It is likely that the Albany area was visited by European fur traders perhaps as early as 1540, but the extent and duration of those visits are unclear.[17]</div>
 <div id = "contentOutline">
 {#each parentInfo as iteration, loop}
 {#each parentInfo as info}
@@ -62,58 +77,3 @@ onMount(async () => {
 </div>
 
 
-<style>
-h2.gpBoxTitle{
-    font-size: 22px; 
-
-    font-weight: bolder;
-    line-height: 28px;
-    letter-spacing: 0;
-    font-family: Arial, Verdana, Helvetica, sans-serif;
-    text-transform: none;
-    background: none transparent;
-    margin: 0;
-    padding-bottom: 7px;
-    padding-top: 10px;
-    display: block;
-    color: #CA001B;
-    visibility: visible;
-}
-h3.gpBoxTitle2{
-    color: #C9021D;
-    outline: 0;
-    display: block;
-    font-size: 1.17em;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
-}
-#paragraph{
-margin-bottom: 20px;
-}
-
-#contentOutline{
-    padding: 19px !important;
-    padding-top: 10px !important;
-    line-height: 20px;
-    margin: 0 325px 20px 0;
-    background: transparent;
-    border: none;
-    position: relative;
-    z-index: 5;
-}
-
-#login-box{
-box-sizing: content-box;
-    position: relative;
-    z-index: 6;
-    float: right;
-    width: 300px;
-    border-left: 1px solid #d2d3d6;
-    margin: 10px 0 0 0;
-    padding: 0 5px 0 10px;
-
-}
-</style>

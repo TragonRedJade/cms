@@ -126,9 +126,8 @@ index--;
 <img src='{cell.attributes.Image}' width="210" height="130">
 <br>
 <span class="gpBoxTitle">{cell.attributes.Header}</span>
-<p style = "padding: 0;
-		padding-top:10px;
-    font-size: 12px;
+<p style = "padding: 0; padding-top:10px;
+  font-size: 12px;
     line-height: 19px;">
 {@html cell.attributes.Description}
 {#if cell.attributes.LinkName==null}
